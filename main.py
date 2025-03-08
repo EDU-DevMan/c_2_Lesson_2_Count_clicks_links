@@ -12,11 +12,12 @@ def shorten_link(token, url):
     headers = {"access_token": token,
                "v": VERSION,
                "url": url}
-
-    response = requests.get(f'https://api.vk.ru/method/{GETSHORTLINK}/',
+    response = requests.get(f'https://api.vk.ru/method/{GETSHORTLINK}/', 
                             params=headers)
-
-    return response.json()['response']['short_url']
+    try:
+        return response.json()['response']['short_url']
+    except KeyError:
+        return "Вы ввели ошибочную ссылку!"
 
 
 if __name__ == "__main__":
