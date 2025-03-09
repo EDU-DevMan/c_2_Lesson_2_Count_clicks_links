@@ -25,7 +25,7 @@ def shorten_link(token, url):
 
 def count_clicks(token, link):
     headers = {"access_token": token,
-               "key": link,
+               "key": urlparse(link).path[1:],
                "v": VERSION,
                "interval": INTERVAL}
 
@@ -39,10 +39,10 @@ def count_clicks(token, link):
 
 
 def is_shorten_link(url):
-    if urlparse(url).scheme:
-        return shorten_link(config('TOKEN'), YOUR_LINK)
-    else:
+    if urlparse(url).path[1:]:
         return count_clicks(config('TOKEN'), YOUR_LINK)
+    else:
+        return shorten_link(config('TOKEN'), YOUR_LINK)
 
 
 if __name__ == "__main__":
