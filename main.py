@@ -35,7 +35,6 @@ def count_clicks(token, link):
     try:
         for quantity in response.json()['response']['stats']:
             return quantity['views']
-
     except KeyError:
         return "Вы ввели ошибочную сокращенную ссылку!"
 
