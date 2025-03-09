@@ -31,7 +31,6 @@ def count_clicks(token, link):
 
     response = requests.get(f'https://api.vk.ru/method/{GETLINKSTATS}/',
                             params=headers)
-
     try:
         for quantity in response.json()['response']['stats']:
             return quantity['views']
