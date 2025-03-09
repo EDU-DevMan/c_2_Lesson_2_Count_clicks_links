@@ -8,7 +8,7 @@ VERSION = '5.199'
 GETSHORTLINK = 'utils.getShortLink'
 GETLINKSTATS = 'utils.getLinkStats'
 INTERVAL = 'forever'
-YOUR_LINK = input()
+YOUR_LINK = input("Введите ссылку: ")
 
 
 def shorten_link(token, url):
@@ -18,7 +18,7 @@ def shorten_link(token, url):
     response = requests.get(f'https://api.vk.ru/method/{GETSHORTLINK}/',
                             params=headers)
     try:
-        return response.json()['response']['key']
+        return response.json()['response']['short_url']
     except KeyError:
         return "Вы ввели ошибочную ссылку!"
 
