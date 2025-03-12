@@ -39,14 +39,14 @@ def count_clicks(token, link):
 
 def is_shorten_link(url):
     if urlparse(url).path[1:]:
-        return count_clicks(config('TOKEN'), YOUR_LINK)
+        return count_clicks(config('TOKEN'), url)
     else:
-        return shorten_link(config('TOKEN'), YOUR_LINK)
+        return shorten_link(config('TOKEN'), url)
 
 
 def main():
     link = input("Введите ссылку: ")
-    return is_shorten_link(link)
+    print(is_shorten_link(link))
 
 
 if __name__ == "__main__":
