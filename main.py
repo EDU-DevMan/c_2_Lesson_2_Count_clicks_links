@@ -8,7 +8,6 @@ VERSION = '5.199'
 GETSHORTLINK = 'utils.getShortLink'
 GETLINKSTATS = 'utils.getLinkStats'
 INTERVAL = 'forever'
-YOUR_LINK = input("Введите ссылку: ")
 
 
 def shorten_link(token, url):
@@ -45,5 +44,10 @@ def is_shorten_link(url):
         return shorten_link(config('TOKEN'), YOUR_LINK)
 
 
+def main():
+    link = input("Введите ссылку: ")
+    return is_shorten_link(link)
+
+
 if __name__ == "__main__":
-    print(is_shorten_link(YOUR_LINK))
+    main()
