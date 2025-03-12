@@ -16,10 +16,9 @@ def shorten_link(token, url):
                "url": url}
     response = requests.get(f'https://api.vk.ru/method/{GETSHORTLINK}/',
                             params=headers)
-    try:
-        return response.json()['response']['short_url']
-    except KeyError:
-        return "Вы ввели ошибочную ссылку!"
+    response.raise_for_status
+
+    return response.json()['response']['short_url']
 
 
 def count_clicks(token, link):
@@ -30,11 +29,10 @@ def count_clicks(token, link):
 
     response = requests.get(f'https://api.vk.ru/method/{GETLINKSTATS}/',
                             params=headers)
-    try:
-        for quantity in response.json()['response']['stats']:
-            return quantity['views']
-    except KeyError:
-        return "Вы ввели ошибочную сокращенную ссылку!"
+    response.raise_for_status
+
+    for quantity in response.json()['response']['stats']:
+        return quantity['views']
 
 
 def is_shorten_link(url):
@@ -46,7 +44,11 @@ def is_shorten_link(url):
 
 def main():
     link = input("Введите ссылку: ")
-    print(is_shorten_link(link))
+
+    try:
+        print(is_shorten_link(link))
+    except KeyError:
+        print("Вы ввели ошибочную ссылку")
 
 
 if __name__ == "__main__":
