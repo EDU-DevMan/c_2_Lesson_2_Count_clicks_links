@@ -18,7 +18,7 @@ def shorten_link(token, url):
                             params=headers)
     response.raise_for_status
 
-    return response.json()['response']['short_url']
+    return f"Короткая ссылка: {response.json()['response']['short_url']}"
 
 
 def count_clicks(token, link):
@@ -32,14 +32,14 @@ def count_clicks(token, link):
     response.raise_for_status
 
     for quantity in response.json()['response']['stats']:
-        return quantity['views']
+        return f"Колличесво просмотров: {quantity['views']}"
 
 
 def is_shorten_link(url):
-    if urlparse(url).path[1:]:
+    if urlparse(url).netloc == 'vk.cc':
         return count_clicks(config('TOKEN'), url)
-    else:
-        return shorten_link(config('TOKEN'), url)
+
+    return shorten_link(config('TOKEN'), url)
 
 
 def main():
