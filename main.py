@@ -32,7 +32,7 @@ def count_clicks(token, link):
     response.raise_for_status
 
     for quantity in response.json()['response']['stats']:
-        return f"Колличесво просмотров: {quantity['views']}"
+        return f"Количество просмотров: {quantity['views']}"
 
 
 def is_shorten_link(url):
