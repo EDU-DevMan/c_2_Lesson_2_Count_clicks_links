@@ -37,16 +37,18 @@ def count_clicks(token, link):
 
 def is_shorten_link(url):
     if urlparse(url).netloc == 'vk.cc':
-        return count_clicks(config('TOKEN'), url)
-
-    return shorten_link(config('TOKEN'), url)
+        return True
 
 
 def main():
     link = input("Введите ссылку: ")
 
     try:
-        print(is_shorten_link(link))
+        if is_shorten_link(link):
+            print(count_clicks(config('TOKEN'), link))
+        else:
+            print(shorten_link(config('TOKEN'), link))
+
     except KeyError:
         print("Вы ввели ошибочную ссылку")
 
