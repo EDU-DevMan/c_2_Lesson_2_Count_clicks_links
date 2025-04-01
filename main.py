@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 VERSION = '5.199'
 GETSHORTLINK = 'utils.getShortLink'
 GETLINKSTATS = 'utils.getLinkStats'
+CHECKLINK = 'utils.checkLink'
 INTERVAL = 'forever'
 
 
@@ -34,16 +35,22 @@ def count_clicks(token, link):
     return response.json()['response']['stats'][0]['views']
 
 
-def is_shorten_link(url):
-    if urlparse(url).netloc == 'vk.cc':
-        return True
+def is_shorten_link(token, url):
+    headers = {"access_token": token,
+               "v": VERSION,
+               "url": url}
+    response = requests.get(f'https://api.vk.ru/method/{CHECKLINK}/',
+                            params=headers)
+    response.raise_for_status()
+
+    return response.json()['response']['link'] != url
 
 
 def main():
     link = input("Введите ссылку: ")
 
     try:
-        if is_shorten_link(link):
+        if is_shorten_link(config('VK_TOKEN'), link):
             print("Количество просмотров:", count_clicks(config('VK_TOKEN'),
                                                          link))
         else:
