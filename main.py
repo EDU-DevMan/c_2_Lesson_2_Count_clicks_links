@@ -16,7 +16,7 @@ def shorten_link(token, url):
                "url": url}
     response = requests.get(f'https://api.vk.ru/method/{GETSHORTLINK}/',
                             params=headers)
-    response.raise_for_status
+    response.raise_for_status()
 
     return f"Короткая ссылка: {response.json()['response']['short_url']}"
 
@@ -29,7 +29,7 @@ def count_clicks(token, link):
 
     response = requests.get(f'https://api.vk.ru/method/{GETLINKSTATS}/',
                             params=headers)
-    response.raise_for_status
+    response.raise_for_status()
 
     for quantity in response.json()['response']['stats']:
         return f"Количество просмотров: {quantity['views']}"
