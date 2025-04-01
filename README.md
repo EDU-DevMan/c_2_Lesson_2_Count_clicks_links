@@ -45,7 +45,7 @@
 
 [`Пример для Unix/macOS`](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
 
-- В корне проекта создайте файл `.env`, и заведите переменную `TOKEN=`, в этой переменной будет храниться Ваш личный токен VK `config('TOKEN')`
+- В корне проекта создайте файл `.env`, и заведите переменную `VK_TOKEN=`, в этой переменной будет храниться Ваш личный токен VK `config('VK_TOKEN')`
 
 Как получить токен [VK](https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/tokens/service-token)
 

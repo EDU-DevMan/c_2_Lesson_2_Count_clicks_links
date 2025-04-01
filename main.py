@@ -45,9 +45,9 @@ def main():
 
     try:
         if is_shorten_link(link):
-            print(count_clicks(config('TOKEN'), link))
+            print(count_clicks(config('VK_TOKEN'), link))
         else:
-            print(shorten_link(config('TOKEN'), link))
+            print(shorten_link(config('VK_TOKEN'), link))
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
