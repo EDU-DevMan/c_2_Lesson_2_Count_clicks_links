@@ -7,7 +7,6 @@ from urllib.parse import urlparse
 VERSION = '5.199'
 GETSHORTLINK = 'utils.getShortLink'
 GETLINKSTATS = 'utils.getLinkStats'
-CHECKLINK = 'utils.checkLink'
 INTERVAL = 'forever'
 
 
@@ -19,7 +18,7 @@ def shorten_link(token, url):
                             params=headers)
     response.raise_for_status()
 
-    return response.json()['response']['short_url']
+    return response.json()
 
 
 def count_clicks(token, link):
@@ -32,18 +31,11 @@ def count_clicks(token, link):
                             params=headers)
     response.raise_for_status()
 
-    return response.json()['response']['stats'][0]['views']
+    return response.json()
 
 
 def is_shorten_link(token, url):
-    headers = {"access_token": token,
-               "v": VERSION,
-               "url": url}
-    response = requests.get(f'https://api.vk.ru/method/{CHECKLINK}/',
-                            params=headers)
-    response.raise_for_status()
-
-    return response.json()['response']['link'] != url
+    return 'error' not in count_clicks(token, url)
 
 
 def main():
@@ -51,10 +43,13 @@ def main():
 
     try:
         if is_shorten_link(config('VK_TOKEN'), link):
-            print("Количество просмотров:", count_clicks(config('VK_TOKEN'),
-                                                         link))
+            print("Количество просмотров:",
+                  count_clicks(config('VK_TOKEN'),
+                               link)['response']['stats'][0]['views'])
         else:
-            print("Короткая ссылка:", shorten_link(config('VK_TOKEN'), link))
+            print("Короткая ссылка:", 
+                  shorten_link(config('VK_TOKEN'),
+                               link)['response']['short_url'])
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
