@@ -46,7 +46,8 @@ def reads_input():
         короткую ссылку на введенную ссылку, или получить
         статистику переходов по сгенерированной ссылке."""
     )
-    parser.add_argument('url', help='Введите ссылку вида https://dvmn.org/modules/')
+    parser.add_argument('url',
+                        help='Введите ссылку вида https://dvmn.org/modules/')
     args = parser.parse_args()
 
     return args.url
