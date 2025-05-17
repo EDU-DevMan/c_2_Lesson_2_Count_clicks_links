@@ -1,5 +1,6 @@
 import os
 import requests
+import argparse
 
 from urllib.parse import urlparse
 from dotenv import load_dotenv
@@ -39,19 +40,30 @@ def is_shorten_link(token, url):
     return 'error' not in count_clicks(token, url)
 
 
+def reads_input():
+    parser = argparse.ArgumentParser(
+        description="""Эта программа позволяет получить 
+        короткую ссылку на введенную ссылку, или получить
+        статистику переходов по сгенерированной ссылке."""
+    )
+    parser.add_argument('url', help='Введите ссылку вида https://dvmn.org/modules/')
+    args = parser.parse_args()
+
+    return args.url
+
+
 def main():
     load_dotenv()
-    link = input("Введите ссылку: ")
 
     try:
-        if is_shorten_link(os.getenv('VK_TOKEN'), link):
+        if is_shorten_link(os.getenv('VK_TOKEN'), reads_input()):
             print("Количество просмотров:",
                   count_clicks(os.getenv('VK_TOKEN'),
-                               link)['response']['stats'][0]['views'])
+                               reads_input())['response']['stats'][0]['views'])
         else:
             print("Короткая ссылка:",
                   shorten_link(os.getenv('VK_TOKEN'),
-                               link)['response']['short_url'])
+                               reads_input())['response']['short_url'])
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
