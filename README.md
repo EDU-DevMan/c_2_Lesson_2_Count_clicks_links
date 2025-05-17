@@ -52,13 +52,21 @@
 
 ### Примеры использования 
 
-Программа запускается командой ```python.exe .\main.py```
+Программа запускается командой ```python.exe .\main.py https://dvmn.org/modules/```
+
+, где ```python.exe .\main.py``` - исполняемы файл программы
+
+, ```https://dvmn.org/modules/``` - аргумент - ссылка для преобразования
+
+Для получения информации о работе программы запустите:
+
+```python.exe .\main.py -h```
 
 1. Можно указать вашу ссылку для получения из неё короткой ссылки, например вводим: `https://dvmn.org/modules/`, ответ: `https://vk.cc/aCA1ad`
 
 Описание API  [utils.getShortLink](https://dev.vk.com/ru/method/utils.getShortLink)
 
-2. Вы можите получить статистику переходов по этой ссылке, вводим `https://vk.cc/aCA1ad`, в ответ программа выдаст `109` - число переходов.
+2. Можно получить статистику переходов по этой ссылке, вводим `https://vk.cc/aCA1ad`, в ответ программа выдаст `109` - число переходов.
 
 Описание API  [utils.getLinkStats](https://dev.vk.com/ru/method/utils.getLinkStats)
 
