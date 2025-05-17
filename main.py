@@ -1,7 +1,9 @@
+import os
 import requests
 
-from decouple import config
 from urllib.parse import urlparse
+from dotenv import load_dotenv
+load_dotenv()
 
 
 VERSION = '5.199'
@@ -42,13 +44,13 @@ def main():
     link = input("Введите ссылку: ")
 
     try:
-        if is_shorten_link(config('VK_TOKEN'), link):
+        if is_shorten_link(os.getenv('VK_TOKEN'), link):
             print("Количество просмотров:",
-                  count_clicks(config('VK_TOKEN'),
+                  count_clicks(os.getenv('VK_TOKEN'),
                                link)['response']['stats'][0]['views'])
         else:
-            print("Короткая ссылка:", 
-                  shorten_link(config('VK_TOKEN'),
+            print("Короткая ссылка:",
+                  shorten_link(os.getenv('VK_TOKEN'),
                                link)['response']['short_url'])
 
     except KeyError:
