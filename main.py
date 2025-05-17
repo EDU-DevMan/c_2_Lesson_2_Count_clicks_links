@@ -3,7 +3,6 @@ import requests
 
 from urllib.parse import urlparse
 from dotenv import load_dotenv
-load_dotenv()
 
 
 VERSION = '5.199'
@@ -41,6 +40,7 @@ def is_shorten_link(token, url):
 
 
 def main():
+    load_dotenv()
     link = input("Введите ссылку: ")
 
     try:
