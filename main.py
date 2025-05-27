@@ -58,16 +58,16 @@ def main():
 
     env_token = os.getenv('VK_TOKEN')
     parser_input = reads_input()
-    view_stat_clicks = count_clicks(env_token, parser_input)
-    view_short_clicks = shorten_link(env_token, parser_input)
 
     try:
         if is_shorten_link(env_token, parser_input):
             print("Количество просмотров:",
-                  view_stat_clicks['response']['stats'][0]['views'])
+                  count_clicks(env_token,
+                               parser_input)['response']['stats'][0]['views'])
         else:
             print("Короткая ссылка:",
-                  view_short_clicks['response']['short_url'])
+                  shorten_link(env_token,
+                               parser_input)['response']['short_url'])
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
