@@ -40,7 +40,7 @@ def is_shorten_link(token, url):
     return 'error' not in count_clicks(token, url)
 
 
-def reads_input():
+def get_link():
     parser = argparse.ArgumentParser(
         description="""Эта программа позволяет получить 
         короткую ссылку на введенную ссылку, или получить
@@ -57,17 +57,17 @@ def main():
     load_dotenv()
 
     env_token = os.getenv('VK_TOKEN')
-    parser_input = reads_input()
+    link = get_link()
 
     try:
-        if is_shorten_link(env_token, parser_input):
+        if is_shorten_link(env_token, link):
             print("Количество просмотров:",
                   count_clicks(env_token,
-                               parser_input)['response']['stats'][0]['views'])
+                               link)['response']['stats'][0]['views'])
         else:
             print("Короткая ссылка:",
                   shorten_link(env_token,
-                               parser_input)['response']['short_url'])
+                               link)['response']['short_url'])
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
