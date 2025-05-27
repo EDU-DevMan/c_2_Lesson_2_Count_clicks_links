@@ -1,4 +1,4 @@
-### О программе
+# О программе
 
 Эта программа позволяет получить короткую ссылку на введенную ссылку, или получить статистику переходов по сгенерированной ссылке.
 
@@ -15,9 +15,7 @@
 
 `Пример для  Windows`
 
-```python3 -m venv --copies C:\DevMan\Course_2\Layout\clicks_links\```
-
-, где `clicks_links` - папка виртуального окружения
+```python3 -m venv --copies C:\DevMan\Course_2\Layout\clicks_links\``` , где  `clicks_links` - папка виртуального окружения
 
 - Активируйте ваше виртальное окружение:
 
@@ -50,13 +48,11 @@
 Как получить токен [VK](https://id.vk.com/about/business/go/docs/ru/vkid/latest/vk-id/connection/tokens/service-token)
 
 
-### Примеры использования 
+## Примеры использования 
 
-Программа запускается командой ```python.exe .\main.py https://dvmn.org/modules/```
+Программа запускается командой ```python.exe .\main.py https://dvmn.org/modules/```, где 
 
-, где ```python.exe .\main.py``` - исполняемы файл программы
-
-, ```https://dvmn.org/modules/``` - аргумент - ссылка для преобразования
+```python.exe .\main.py``` - исполняемы файл программы , ```https://dvmn.org/modules/``` - аргумент - ссылка для преобразования.
 
 Для получения информации о работе программы запустите:
 
