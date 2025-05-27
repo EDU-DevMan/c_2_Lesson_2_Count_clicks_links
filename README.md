@@ -36,11 +36,9 @@
 
 - Установите зависимости
 
-Пример для Windows:
+Команда для Windows:
 
 ```py -m pip install -r requirements.txt```
-
-[`Пример для Unix/macOS`](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
 
 - В корне проекта создайте файл ```.env```, и заведите переменную ```VK_TOKEN=```, в этой переменной будет храниться Ваш личный токен VK ```config('VK_TOKEN')```
 
@@ -66,6 +64,9 @@
 ## Дополнительные настройки
 
 ```VERSION = '5.199'``` - текущая версия API (*)
+
 ```GETSHORTLINK = 'utils.getShortLink'``` - API для сокращения исходной ссылки
+
 ```GETLINKSTATS = 'utils.getLinkStats'``` - API статистики кликов по сокращенной ссылки
+
 ```INTERVAL = 'forever'``` - статистика кликов по сокращенной ссылки (по умолчанию 'forever' за весь период)
