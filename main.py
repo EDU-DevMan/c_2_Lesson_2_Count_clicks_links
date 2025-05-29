@@ -20,7 +20,7 @@ def shorten_link(token, url):
                             params=headers)
     response.raise_for_status()
 
-    return response.json()
+    return response.json()['response']['short_url']
 
 
 def count_clicks(token, link):
@@ -33,11 +33,14 @@ def count_clicks(token, link):
                             params=headers)
     response.raise_for_status()
 
-    return response.json()
+    return response.json()['response']['stats'][0]['views']
 
 
 def is_shorten_link(token, url):
-    return 'error' not in count_clicks(token, url)
+    try:
+        return count_clicks(token, url)
+    except KeyError:
+        return False
 
 
 def get_link():
@@ -63,11 +66,11 @@ def main():
         if is_shorten_link(env_token, link):
             print("Количество просмотров:",
                   count_clicks(env_token,
-                               link)['response']['stats'][0]['views'])
+                               link))
         else:
             print("Короткая ссылка:",
                   shorten_link(env_token,
-                               link)['response']['short_url'])
+                               link))
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
