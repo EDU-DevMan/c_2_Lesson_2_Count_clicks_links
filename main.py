@@ -64,13 +64,9 @@ def main():
 
     try:
         if is_shorten_link(env_token, link):
-            print("Количество просмотров:",
-                  count_clicks(env_token,
-                               link))
+            print("Количество просмотров:", count_clicks(env_token, link))
         else:
-            print("Короткая ссылка:",
-                  shorten_link(env_token,
-                               link))
+            print("Короткая ссылка:", shorten_link(env_token, link))
 
     except KeyError:
         print("Вы ввели ошибочную ссылку")
